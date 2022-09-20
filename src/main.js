@@ -12,7 +12,7 @@ import parseFromHtml from './utils/parseFromHtml.js'
 import { isValid as isValidUrl } from './utils/linker.js'
 import { isValid as isHTMLString } from './utils/html.js'
 
-export const extract = async (input) => {
+export const extract = async (input, header=null) => {
   if (!isString(input)) {
     throw new Error('Input must be a string')
   }
@@ -23,7 +23,7 @@ export const extract = async (input) => {
   if (!isValidUrl(input)) {
     throw new Error('Input must be a valid URL')
   }
-  const html = await retrieve(input)
+  const html = await retrieve(input, header)
   if (!html) {
     return null
   }
